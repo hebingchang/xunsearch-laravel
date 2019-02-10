@@ -134,6 +134,7 @@ class XunSearchEngine extends Engine
         }
 
         $search->setCollapse('actid');
+        $search->setSort('start_time');
         $search->setFuzzy(boolval(isset($builder->fuzzy) && $builder->fuzzy))
             ->setQuery($this->buildQuery($builder));
 
