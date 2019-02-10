@@ -133,6 +133,7 @@ class XunSearchEngine extends Engine
             );
         }
 
+        $search->setCollapse('actid');
         $search->setFuzzy(boolval(isset($builder->fuzzy) && $builder->fuzzy))
             ->setQuery($this->buildQuery($builder));
 
@@ -140,8 +141,8 @@ class XunSearchEngine extends Engine
             collect($builder->ranges)->map(function ($value, $key) use ($search) {
                 $search->addRange($key, $value['from'], $value['to']);
             });
-
-        return ['docs' => $search->search(), 'total' => $search->getLastCount()];
+        
+        return ['docs' => $search->search(), 'total' => $search->getLastCount(), 'search_obj' => $search];
     }
 
     protected function buildQuery(Builder $builder)
