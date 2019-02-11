@@ -133,7 +133,7 @@ class XunSearchEngine extends Engine
             );
         }
 
-        $search->setCollapse('actid');
+        $search->setCollapse($builder->model->getKeyName());
         $search->setFuzzy(boolval(isset($builder->fuzzy) && $builder->fuzzy))
             ->setQuery($this->buildQuery($builder));
 
