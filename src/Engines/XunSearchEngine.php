@@ -133,6 +133,8 @@ class XunSearchEngine extends Engine
             );
         }
 
+        if (isset($builder->order)) $search->setSort($builder->order[0], $builder->order[1]);
+
         $search->setCollapse($builder->model->getKeyName());
         $search->setFuzzy(boolval(isset($builder->fuzzy) && $builder->fuzzy))
             ->setQuery($this->buildQuery($builder));

@@ -18,6 +18,7 @@ trait XunSearchTrait
     public function registerXunSearchMacros()
     {
         $this->registerSearchableRangeSearch();
+        $this->registerSearchableOrderSearch();
         $this->registerSearchableFuzzy();
     }
 
@@ -27,6 +28,14 @@ trait XunSearchTrait
             $this->ranges[$word]['from'] = $from;
             $this->ranges[$word]['to'] = $to;
 
+            return $this;
+        });
+    }
+
+    public function registerSearchableOrderSearch()
+    {
+        Builder::macro('order', function ($by, $asc = false) {
+            $this->order = [$by, $asc];
             return $this;
         });
     }
