@@ -218,7 +218,7 @@ class XunSearchEngine extends Engine
      * @return XunSearch
      * @throws
      */
-    protected function getXS(Model $model)
+    public function getXS(Model $model)
     {
         $app_name = $model->searchableAs();
 
